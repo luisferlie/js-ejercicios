@@ -29,7 +29,7 @@ const reviews = [
     text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
   },
 ];
-// select items
+
 const img = document.getElementById('person-img');
 const nombre = document.querySelector('.nombre');
 const cargo = document.querySelector('.cargo');
@@ -39,10 +39,10 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const randomBtn = document.querySelector('.sorprendeme');
 
-// set starting item
+
 let currentItem = 0;
 
-// load initial item
+// carga inicial
 window.addEventListener('DOMContentLoaded', function () {
   const item = reviews[currentItem];
   img.src = item.img;
@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', function () {
   texto.textContent = item.text;
 });
 
-// show person based on item
+// mostrar persona
 function showPerson(Idxperson) {
   const item = reviews[Idxperson];
   img.src = item.img;
@@ -59,7 +59,7 @@ function showPerson(Idxperson) {
   cargo.textContent = item.job;
   texto.textContent = item.text;
 }
-// show next person
+// mostrar prox persona
 nextBtn.addEventListener('click', function () {
   currentItem++;
   if (currentItem > reviews.length - 1) {
@@ -67,7 +67,7 @@ nextBtn.addEventListener('click', function () {
   }
   showPerson(currentItem);
 });
-// show prev person
+// mostrar anterior persona
 prevBtn.addEventListener('click', function () {
   currentItem--;
   if (currentItem < 0) {
@@ -75,7 +75,7 @@ prevBtn.addEventListener('click', function () {
   }
   showPerson(currentItem);
 });
-// show random person
+// persona aleatoria
 randomBtn.addEventListener('click', function () {
   console.log('hello');
 
