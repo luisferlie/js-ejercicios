@@ -61,7 +61,8 @@ console.log(players1)
 //5. En base  al objeto game.odds, crea una  variable para cada apuesta  y llámalas *team1*, *draw* y *team2*.
 const { team1, x: draw, team2 } = game.odds
 console.log(draw, team1, team2)
-//6. Escribe una función *printGoals* que recibe un número arbitrario de nombres de jugadores (no un array) e imprime sus nombres por consola así como el total de goles marcados (uno por cada jugador). Usa luego la función mandando como parámetro *game.scored*
+//6. Escribe una función *printGoals* que recibe un número arbitrario de nombres de jugadores (no un array)
+// e imprime sus nombres por consola así como el total de goles marcados (uno por cada jugador). Usa luego la función mandando como parámetro *game.scored*
 
 function printGoals(goalplayers) {
     const goles={}
@@ -85,4 +86,3 @@ function printGoals(goalplayers) {
 }
 printGoals(game.scored)
 
-//7. El equipo con la apuesta menor es el que tiene más probabilidades de ganar. Imprime ese dato por consola SIN USAR un operador if/else  o un operador ternario.
