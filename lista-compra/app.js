@@ -101,7 +101,7 @@ function getLocalStorage() {
     /*  return localStorage.getItem("list")
        ? JSON.parse(localStorage.getItem("list"))
        : []; */
-    return localStorage.getItem('list') ?
+    return JSON.parse(localStorage.getItem('list')) ?
         JSON.parse(localStorage.getItem('list'))
         : []
 }
@@ -142,46 +142,19 @@ function setupItems() {
         container.classList.add("show-container");
     } */
     let items = getLocalStorage()
+    console.log(items)
     if (items.length > 0) {
-        items.foreach(item => {
+        items.forEach(item => {
             createListItem(item.id, item.value)
+           
         })
         container.classList.add("show-container")
     }
 }
 
 function createListItem(id, value) {
-    /*     const element = document.createElement("article");
-        let attr = document.createAttribute("data-id");
-        attr.value = id;
-        element.setAttributeNode(attr);
-        element.classList.add("grocery-item");
-        element.innerHTML = `<p class="title">${value}</p>
-               
-        <div class="btn-container">
-                    <!-- edit btn -->
-                    <button type="button" class="edit-btn">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <!-- delete btn -->
-                    <button type="button" class="delete-btn">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                `;
-        // add event listeners to both buttons;
-        const deleteBtn = element.querySelector(".delete-btn");
-        deleteBtn.addEventListener("click", deleteItem);
-        const editBtn = element.querySelector(".edit-btn");
-        editBtn.addEventListener("click", editItem);
-    
-        // append child
-        list.appendChild("show-container")    */
-
     const element = document.createElement('article')
-    let attr = document.createAttribute('data-id')
-    attr.value = id
-    element.setAttribute(attr)
+    element.setAttribute('data-id',id)
     element.classList.add('grocery-item')
     element.innerHTML = `
                 <p class="title">${value}</p>
