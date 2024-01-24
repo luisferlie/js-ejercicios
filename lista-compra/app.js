@@ -29,11 +29,12 @@ function setBackToDefault() {
     grocery.value = "";
     editFlag = false;
     editID = "";
-    submitBtn.textContent = "submit";
+    submitBtn.textContent = "enviar";
 }
 
 function addItem(e) {
     e.preventDefault();
+    
     const value = grocery.value;
     const id = new Date().getTime().toString();
 
@@ -73,14 +74,16 @@ function addItem(e) {
         setBackToDefault();
     } else if (value !== "" && editFlag) {
         editElement.innerHTML = value;
-        displayAlert("value changed", "success");
+        displayAlert("valor modificado", "success");
 
         // edit  local storage
         editLocalStorage(editID, value);
         setBackToDefault();
     } else {
-        displayAlert("please enter value", "danger");
+        displayAlert("introduzca un valor", "danger");
     }
+   
+    
 }
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
@@ -130,6 +133,7 @@ function editLocalStorage(id, value) {
         if (elem.id == id) elem.value = value
         return elem
     })
+   
 }
 // ****** SETUP ITEMS **********
 function setupItems() {
@@ -201,13 +205,14 @@ function deleteItem(e) {
     if (list.children.length === 0) {
         container.classList.remove("show-container");
     }
-    displayAlert("item removed", "danger");
+    displayAlert("elemento eliminado", "danger");
 
     setBackToDefault();
     // remove from local storage
     removeFromLocalStorage(id);
 }
 function editItem(e) {
+   
     const element = e.currentTarget.parentElement.parentElement;
     // set edit item
     editElement = e.currentTarget.parentElement.previousElementSibling;
@@ -216,7 +221,8 @@ function editItem(e) {
     editFlag = true;
     editID = element.dataset.id;
     //
-    submitBtn.textContent = "edit";
+    submitBtn.value = "editar";
+   
 }
 function displayAlert(text, action) {
     alert.textContent = text;
