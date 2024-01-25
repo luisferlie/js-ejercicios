@@ -1,4 +1,5 @@
 {
     "jest.rootPath": "D:\\aWEB\\EJERCICIOS 2023\\js-ejercicios",
-    "jest.jestCommandLine": "D:\\aWEB\\EJERCICIOS 2023\\js-ejercicios"
+    "jest.jestCommandLine": "D:\\aWEB\\EJERCICIOS 2023\\js-ejercicios",
+    "liveServer.settings.port": 5501
 }
