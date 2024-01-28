@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | Comfy</title>
+    <title>Productos</title>
     <!-- font-awesome -->
     <link
       rel="stylesheet"
@@ -13,10 +13,9 @@
     <!-- styles css -->
     <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
     <!-- navbar -->
-    <nav class="navbar page">
+    <nav class="navbar" style="background-color: burlywood;">
       <div class="nav-center">
         <!-- links -->
         <div>
@@ -26,26 +25,26 @@
           <ul class="nav-links">
             <li>
               <a href="index.html" class="nav-link">
-                home
+                Inicio
               </a>
             </li>
             <li>
               <a href="products.html" class="nav-link">
-                products
+                productos
               </a>
             </li>
             <li>
               <a href="about.html" class="nav-link">
-                about
+                nosotros
               </a>
             </li>
           </ul>
         </div>
         <!-- logo -->
-        <img src="./images/logo-black.svg" class="nav-logo" alt="logo" />
+        <img src="./images/logo-white.svg" class="nav-logo" alt="logo" />
         <!-- cart icon -->
         <div class="toggle-container">
-          <button class="toggle-cart">
+          <button class="toggle-cart" >
             <i class="fas fa-shopping-cart"></i>
           </button>
           <span class="cart-item-count">1</span>
@@ -55,7 +54,7 @@
     <!-- hero -->
     <section class="page-hero">
       <div class="section-center">
-        <h3 class="page-hero-title">Home / About</h3>
+        <h3 class="page-hero-title">inicio / Productos</h3>
       </div>
     </section>
     <!-- sidebar -->
@@ -70,19 +69,19 @@
           <li>
             <a href="index.html" class="sidebar-link">
               <i class="fas fa-home fa-fw"></i>
-              home
+              Inicio
             </a>
           </li>
           <li>
             <a href="products.html" class="sidebar-link">
               <i class="fas fa-couch fa-fw"></i>
-              products
+              product0s
             </a>
           </li>
           <li>
             <a href="about.html" class="sidebar-link">
               <i class="fas fa-book fa-fw"></i>
-              about
+              Nosotros
             </a>
           </li>
         </ul>
@@ -95,36 +94,55 @@
           <i class="fas fa-times"></i>
         </button>
         <header>
-          <h3 class="text-slanted">your bag</h3>
+          <h3 class="text-slanted">tu carrito</h3>
         </header>
         <!-- cart items -->
         <div class="cart-items"></div>
         <!-- footer -->
         <footer>
           <h3 class="cart-total text-slanted">
-            total : $12.99
+            total : $0
           </h3>
-          <button class="cart-checkout btn">checkout</button>
+          <button class="cart-checkout btn">pagar</button>
         </footer>
       </aside>
     </div>
-    <!-- about -->
-    <section class="section section-center about-page">
-      <div class="title">
-        <h2><span>/</span> our history</h2>
+    <!-- products -->
+    <section class="products">
+      <!-- filters -->
+      <div class="filters">
+        <div class="filters-container">
+          <!-- search -->
+          <form class="input-form">
+            <input type="text" class="search-input" placeholder="search..." />
+          </form>
+          <!-- categories -->
+          <h4>Compañia</h4>
+          <article class="companies">
+            <button class="company-btn">Todos</button>
+            
+          </article>
+          <!-- price -->
+          <h4>Precio</h4>
+          <form class="price-form">
+            <input
+              type="range"
+              class="price-filter"
+              min="0"
+              value="50"
+              max="90"
+            />
+          </form>
+          <p class="price-value"></p>
+        </div>
       </div>
-      <p class="about-text">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
-        accusantium sapiente tempora sed dolore esse deserunt eaque excepturi,
-        delectus error accusamus vel eligendi, omnis beatae. Quisquam, dicta.
-        Eos quod quisquam esse recusandae vitae neque dolore, obcaecati incidunt
-        sequi blanditiis est exercitationem molestiae delectus saepe odio
-        eligendi modi porro eaque in libero minus unde sapiente consectetur
-        architecto. Ullam rerum, nemo iste ex, eaque perspiciatis nisi, eum
-        totam velit saepe sed quos similique amet. Ex, voluptate accusamus
-        nesciunt totam vitae esse iste.
-      </p>
+      <!-- products -->
+      <div class="products-container"></div>
     </section>
-    <script type="module" src="./src/pages/about.js"></script>
+    <!-- page loading -->
+    <div class="page-loading">
+      <h2>cargando...</h2>
+    </div>
+    <script type="module" src="./src/pages/products.js"></script>
   </body>
 </html>

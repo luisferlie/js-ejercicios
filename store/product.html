@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | Comfy</title>
+    <title>Single Product</title>
     <!-- font-awesome -->
     <link
       rel="stylesheet"
@@ -13,7 +13,6 @@
     <!-- styles css -->
     <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
     <!-- navbar -->
     <nav class="navbar page">
@@ -26,17 +25,17 @@
           <ul class="nav-links">
             <li>
               <a href="index.html" class="nav-link">
-                home
+                inicio
               </a>
             </li>
             <li>
               <a href="products.html" class="nav-link">
-                products
+                productos
               </a>
             </li>
             <li>
               <a href="about.html" class="nav-link">
-                about
+                nosotros
               </a>
             </li>
           </ul>
@@ -55,7 +54,7 @@
     <!-- hero -->
     <section class="page-hero">
       <div class="section-center">
-        <h3 class="page-hero-title">Home / About</h3>
+        <h3 class="page-hero-title">Inicio / Producto</h3>
       </div>
     </section>
     <!-- sidebar -->
@@ -70,19 +69,19 @@
           <li>
             <a href="index.html" class="sidebar-link">
               <i class="fas fa-home fa-fw"></i>
-              home
+              Inicio
             </a>
           </li>
           <li>
             <a href="products.html" class="sidebar-link">
               <i class="fas fa-couch fa-fw"></i>
-              products
+              productos
             </a>
           </li>
           <li>
             <a href="about.html" class="sidebar-link">
               <i class="fas fa-book fa-fw"></i>
-              about
+              nosotros
             </a>
           </li>
         </ul>
@@ -95,36 +94,50 @@
           <i class="fas fa-times"></i>
         </button>
         <header>
-          <h3 class="text-slanted">your bag</h3>
+          <h3 class="text-slanted">tu carrito</h3>
         </header>
         <!-- cart items -->
         <div class="cart-items"></div>
         <!-- footer -->
         <footer>
           <h3 class="cart-total text-slanted">
-            total : $12.99
+            total : $0
           </h3>
-          <button class="cart-checkout btn">checkout</button>
+          <button class="cart-checkout btn">pagar</button>
         </footer>
       </aside>
     </div>
-    <!-- about -->
-    <section class="section section-center about-page">
-      <div class="title">
-        <h2><span>/</span> our history</h2>
+    <!-- product info -->
+    <section class="single-product">
+      <div class="section-center single-product-center">
+        <img
+          src="./images/main-bcg.jpeg"
+          class="single-product-img img"
+          alt=""
+        />
+        <article class="single-product-info">
+          <div>
+            <h2 class="single-product-title">couch</h2>
+            <p class="single-product-company text-slanted">
+              De luis F
+            </p>
+            <p class="single-product-price">$30.00</p>
+            <div class="single-product-colors"></div>
+            <p class="single-product-desc">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id,
+              modi? Minima libero doloremque necessitatibus! Praesentium
+              recusandae quod nesciunt animi voluptatem!
+            </p>
+            <button class="addToCartBtn btn" data-id="id">
+              añadir al carrito
+            </button>
+          </div>
+        </article>
       </div>
-      <p class="about-text">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
-        accusantium sapiente tempora sed dolore esse deserunt eaque excepturi,
-        delectus error accusamus vel eligendi, omnis beatae. Quisquam, dicta.
-        Eos quod quisquam esse recusandae vitae neque dolore, obcaecati incidunt
-        sequi blanditiis est exercitationem molestiae delectus saepe odio
-        eligendi modi porro eaque in libero minus unde sapiente consectetur
-        architecto. Ullam rerum, nemo iste ex, eaque perspiciatis nisi, eum
-        totam velit saepe sed quos similique amet. Ex, voluptate accusamus
-        nesciunt totam vitae esse iste.
-      </p>
     </section>
-    <script type="module" src="./src/pages/about.js"></script>
+    <div class="page-loading">
+      <h2>loading...</h2>
+    </div>
+    <script type="module" src="./src/pages/product.js"></script>
   </body>
 </html>
