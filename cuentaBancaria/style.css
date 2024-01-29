@@ -4,3 +4,35 @@
 .app.show{
 display: block;
 }
+.transfer-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 60%;
+    height: 50vh;
+    background-color: azure;
+    border-radius: 20%;
+    -webkit-border-radius: 20%;
+    -moz-border-radius: 20%;
+    -ms-border-radius: 20%;
+    -o-border-radius: 20%;
+    z-index:  999;
+}
+.transfer-container.show{
+    display: block;
+}
+.destino{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.show{
+    display: block;
+}
+.hide{
+    display:'none'
+}

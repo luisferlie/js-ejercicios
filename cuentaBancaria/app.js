@@ -1,9 +1,167 @@
-import { accounts } from "./accounts.js";
-import { movements } from "./movements.js";
-console.log(accounts)
-console.log(movements)
 
-const saldo=document.querySelector('.balance')
+import { movements } from "./movements.js";
+let accounts = [
+  {
+    owner: 'Sarah Smith',
+    movements: [
+      {
+        date: '2021-01-01',
+        value: 430,
+      },
+      {
+        date: '2021-01-02',
+        value: 1000,
+      },
+      {
+        date: '2021-01-03',
+        value: 700,
+      },
+      {
+        date: '2021-01-04',
+        value: -300,
+      },
+      {
+        date: '2021-01-05',
+        value: 4000,
+      },
+      {
+        date: '2021-01-06',
+        value: 300,
+      },
+      {
+        date: '2021-01-07',
+        value: -7000,
+      },
+      {
+        date: '2021-01-08',
+        value: 200,
+      }
+    ],
+    interestRate: 1,
+    pin: 4444,
+  },
+  {
+    owner: 'Luis Fernandez',
+    movements: [
+      {
+        date: '2021-01-01',
+        value: 1000,
+      },
+      {
+        date: '2021-01-02',
+        value: -500,
+      },
+      {
+        date: '2021-01-03',
+        value: 3000,
+      },
+      {
+        date: '2021-01-04',
+        value: -200,
+      },
+      {
+        date: '2021-01-05',
+        value: 5000,
+      },
+      {
+        date: '2021-01-06',
+        value: -6000,
+      },
+      {
+        date: '2021-01-07',
+        value: 7000,
+      },
+      {
+        date: '2021-01-08',
+        value: -900,
+      }
+    ],
+    interestRate: 1,
+    pin: 3333,
+  },
+  {
+    owner: 'Juan poe',
+    movements: [
+      {
+        date: '2021-01-01',
+        value: 1000,
+      },
+      {
+        date: '2021-01-02',
+        value: 2000,
+      },
+      {
+        date: '2021-01-03',
+        value: 3000,
+      },
+      {
+        date: '2021-01-04',
+        value: 4000,
+      },
+      {
+        date: '2021-01-05',
+        value: 5000,
+      },
+      {
+        date: '2021-01-06',
+        value: 6000,
+      },
+      {
+        date: '2021-01-07',
+        value: 7000,
+      },
+      {
+        date: '2021-01-08',
+        value: 8000,
+      }
+    ],
+    interestRate: 1,
+    pin: 2222,
+  },
+  {
+    owner: 'pepe pin',
+    movements: [
+      {
+        date: '2021-01-01',
+        value: 1000,
+      },
+      {
+        date: '2021-01-02',
+        value: 2000,
+      },
+      {
+        date: '2021-01-03',
+        value: 3000,
+      },
+      {
+        date: '2021-01-04',
+        value: 4000,
+      },
+      {
+        date: '2021-01-05',
+        value: 5000,
+      },
+      {
+        date: '2021-01-06',
+        value: 6000,
+      },
+      {
+        date: '2021-01-07',
+        value: 7000,
+      },
+      {
+        date: '2021-01-08',
+        value: 8000,
+      }
+    ],
+    interestRate: 10,
+    pin: 1111,
+  },
+]
+
+accounts = JSON.parse(localStorage.getItem('accounts')) || accounts
+
+const saldo = document.querySelector('.balance')
 const app = document.querySelector('.app')
 const form = document.querySelector('.form')
 const nombreEl = document.querySelector('#nombre')
@@ -14,10 +172,16 @@ const nDeposEL = document.querySelector('.movements__type movements__type--depos
 const fechEL = document.querySelector('.mensaje')
 const nRetiradasEl = document.querySelector('movements__type movements__type--withdrawal')
 const containerMovements = document.querySelector('.movements')
-const labelSumOut=document.querySelector('.labelSumOut')
-const labelSumIn=document.querySelector('.labelSumIn')
-const labelSumInterest=document.querySelector('.labelSumInterest')
+const labelSumOut = document.querySelector('.labelSumOut')
+const labelSumIn = document.querySelector('.labelSumIn')
+const labelSumInterest = document.querySelector('.labelSumInterest')
+const transferBtn = document.querySelector('.transfer-btn')
+const transferPanel = document.querySelector('.transfer-container')
+const destinatarios = document.querySelector('.destinatarios')
+
 let clients, nombre, apellido, password
+app.classList.add('hide')
+
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -59,7 +223,24 @@ form.addEventListener('submit', (e) => {
     saldo.textContent = `${balance}€`;
   };
   calcDisplayBalance(cliente[0].movements)
-  calcDisplaySummary(cliente[0].movements)
+  calcDisplaySummary(cliente[0].movements, cliente[0].interestRate)
+ 
+
+  let htmlDest = ''
+
+  accounts.forEach(acc => {
+
+    htmlDest += `<h2><button class="destinatario btn btn-outline-primary">${acc.owner}</button></h2><br>`
+  })
+  console.log(htmlDest)
+
+  destinatarios.innerHTML = htmlDest
+  const destinatario = document.querySelectorAll('.destinatario')
+  console.log(destinatario)
+
+  destinatario.forEach(dest => dest.addEventListener('click', transferencia))
+
+
 })
 
 
@@ -81,7 +262,7 @@ const displayMovements = (movements) => {
   });
 };
 
-const calcDisplaySummary = function (acc) {
+const calcDisplaySummary = function (acc, int) {
   const incomes = acc
     .filter(mov => mov.value > 0)
     .reduce((acc, mov) => acc + mov.value, 0);
@@ -93,17 +274,84 @@ const calcDisplaySummary = function (acc) {
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
   const interest = acc
-    .filter(mov => mov > 0)
-    .map(deposit => (deposit * acc.interestRate) / 100)
+    .filter(mov => mov.value > 0)
+    .map(deposit => (deposit.value * int) / 100)
     .filter((int, i, arr) => {
       // console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.innerHTML = `${interest*100000}€`;
+  labelSumInterest.innerHTML = `${interest}€`;
 };
+transferBtn.addEventListener('click', openTransferPanel)
+
+function openTransferPanel() {
+  transferPanel.classList.add('show')
+
+}
+
+function transferencia(e) {
+  console.log(accounts)
+  const valor = 0
+  const transBtn = document.querySelector('#trans')
+  console.log(e.target.textContent)
+  console.log('transfer')
+
+  transferPanel.classList.remove('show')
+  const destinoForm = document.querySelector('.destino')
+  const transferInputEl = document.querySelector('.transfer')
+  const destinNombreEl = document.querySelector('.destin-nombre')
+  destinNombreEl.textContent = e.target.textContent
+  destinoForm.classList.add('show')
 
 
+  transBtn.addEventListener('click', transfering)
+
+  function transfering(e) {
+    e.preventDefault();
+    let date = new Date()
+    let fecha = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
+    const nombreDestino = destinNombreEl.textContent;
+    let monto = Number(transferInputEl.value);
+    const mensajeEl = document.querySelector('.mensaje-trans')
+    const emisor = nombreEl.value + ' ' + apellidoEl.value
+   
+    let mov = accounts.find(acc => acc.owner == emisor).movements
+   
+    let bal = calcDisplayBalance(mov)
+        
+     if (monto > bal) {
+      mensajeEl.innerHTML = "<h1 style='color:blue'>no hay saldo suficiente</h1>"
+      return
+     }else{
+      accounts.filter(elem => elem.owner == emisor)[0].movements.push({ date: fecha, value: -monto, 'transfer': true })
+     }
+    
+    accounts.filter(elem => elem.owner == nombreDestino)[0].movements.push({ date: fecha, value: monto, 'transfer': true })
+
+   
+    mensajeEl.innerHTML = "<h3 style='color:blue'>transferencia realizada</h3>"
+    displayMovements(mov)
+    localStorage.setItem('accounts', JSON.stringify(accounts))
+    const otraTransEl = document.querySelector('.otratrans-btn')
+    const volverEl = document.querySelector('.btn.btn-sm.vover-btn')
+    otraTransEl.addEventListener('click', ()=>transferBtn.click())
+    volverEl.addEventListener('click', volver)
+
+  }
+  function volver(e) {
+    location.href = 'index.html'
+  }
+
+}
+const calcDisplayBalance = function (acc) {
+  console.log(acc)
+  const balance = acc.reduce((acc, mov) => acc + mov.value, 0);
+  saldo.textContent = `${balance}€`
+  return balance
+
+};
 
 
 

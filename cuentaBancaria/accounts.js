@@ -1,4 +1,4 @@
-export const accounts=[
+export let accounts=[
     {
         owner: 'Sarah Smith',
         movements:[
@@ -152,7 +152,7 @@ export const accounts=[
                 value: 8000,
             }
         ],
-        interestRate: 1,
+        interestRate: 10,
         pin: 1111,
       },
     ]
